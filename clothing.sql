@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2023 at 06:52 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Waktu pembuatan: 15 Bulan Mei 2023 pada 10.11
+-- Versi server: 10.4.27-MariaDB
+-- Versi PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_clothing`
+-- Database: `clothing`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `card`
+-- Struktur dari tabel `card`
 --
 
 CREATE TABLE `card` (
@@ -36,7 +36,7 @@ CREATE TABLE `card` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `card`
+-- Dumping data untuk tabel `card`
 --
 
 INSERT INTO `card` (`id`, `code`, `name`, `discount`, `member_fee`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `card` (`id`, `code`, `name`, `discount`, `member_fee`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customer`
+-- Struktur dari tabel `customer`
 --
 
 CREATE TABLE `customer` (
@@ -62,7 +62,7 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `customer`
+-- Dumping data untuk tabel `customer`
 --
 
 INSERT INTO `customer` (`id`, `name`, `gender`, `phone`, `email`, `address`, `card_id`) VALUES
@@ -74,7 +74,7 @@ INSERT INTO `customer` (`id`, `name`, `gender`, `phone`, `email`, `address`, `ca
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Struktur dari tabel `order`
 --
 
 CREATE TABLE `order` (
@@ -88,7 +88,7 @@ CREATE TABLE `order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `order`
+-- Dumping data untuk tabel `order`
 --
 
 INSERT INTO `order` (`id`, `order_number`, `date`, `qty`, `total_price`, `customer_id`, `product_id`) VALUES
@@ -99,7 +99,7 @@ INSERT INTO `order` (`id`, `order_number`, `date`, `qty`, `total_price`, `custom
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Struktur dari tabel `product`
 --
 
 CREATE TABLE `product` (
@@ -115,7 +115,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `product`
+-- Dumping data untuk tabel `product`
 --
 
 INSERT INTO `product` (`id`, `sku`, `name`, `purchase_price`, `sell_price`, `stock`, `min_stock`, `product_type_id`, `restock_id`) VALUES
@@ -128,7 +128,7 @@ INSERT INTO `product` (`id`, `sku`, `name`, `purchase_price`, `sell_price`, `sto
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_type`
+-- Struktur dari tabel `product_type`
 --
 
 CREATE TABLE `product_type` (
@@ -137,7 +137,7 @@ CREATE TABLE `product_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `product_type`
+-- Dumping data untuk tabel `product_type`
 --
 
 INSERT INTO `product_type` (`id`, `name`) VALUES
@@ -150,7 +150,7 @@ INSERT INTO `product_type` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `restock`
+-- Struktur dari tabel `restock`
 --
 
 CREATE TABLE `restock` (
@@ -163,7 +163,7 @@ CREATE TABLE `restock` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `restock`
+-- Dumping data untuk tabel `restock`
 --
 
 INSERT INTO `restock` (`id`, `restock_number`, `date`, `qty`, `price`, `supplier_id`) VALUES
@@ -174,7 +174,7 @@ INSERT INTO `restock` (`id`, `restock_number`, `date`, `qty`, `price`, `supplier
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supplier`
+-- Struktur dari tabel `supplier`
 --
 
 CREATE TABLE `supplier` (
@@ -186,27 +186,47 @@ CREATE TABLE `supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `supplier`
+-- Dumping data untuk tabel `supplier`
 --
 
 INSERT INTO `supplier` (`id`, `name`, `phone`, `address`, `contact_name`) VALUES
-(1, 'PT Prima Sentosa Indonesia', '081123456789', 'Surabaya', 'Dewi Kurniawati'),
-(2, 'PT QNET Indonesia', '085678901234', 'Bandung', 'Andi Pratama'),
+(2, 'PT jaya', '085678901234', 'Bandung', 'rega'),
 (3, 'PT Melia Sehat Sejahtera', '081234567890', 'Jakarta Timur', 'Dimas Sanjaya');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+(1, 'Niagahoster Tutorial', 'nhtutorial@gmail.com', '0139a3c5cf42394be982e766c93f5ed0'),
+(2, 'rega', 'reganurcahya1@gmail.com', '0f439d72d1016eb8529f97fd6f92f09e');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `card`
+-- Indeks untuk tabel `card`
 --
 ALTER TABLE `card`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `code` (`code`);
 
 --
--- Indexes for table `customer`
+-- Indeks untuk tabel `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`),
@@ -214,7 +234,7 @@ ALTER TABLE `customer`
   ADD KEY `fk_customer_card1` (`card_id`);
 
 --
--- Indexes for table `order`
+-- Indeks untuk tabel `order`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`id`),
@@ -223,7 +243,7 @@ ALTER TABLE `order`
   ADD KEY `fk_order_product1` (`product_id`);
 
 --
--- Indexes for table `product`
+-- Indeks untuk tabel `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
@@ -232,13 +252,13 @@ ALTER TABLE `product`
   ADD KEY `fk_product_restock1` (`restock_id`);
 
 --
--- Indexes for table `product_type`
+-- Indeks untuk tabel `product_type`
 --
 ALTER TABLE `product_type`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `restock`
+-- Indeks untuk tabel `restock`
 --
 ALTER TABLE `restock`
   ADD PRIMARY KEY (`id`),
@@ -246,83 +266,95 @@ ALTER TABLE `restock`
   ADD KEY `fk_restock_supplier1` (`supplier_id`);
 
 --
--- Indexes for table `supplier`
+-- Indeks untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indeks untuk tabel `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `card`
+-- AUTO_INCREMENT untuk tabel `card`
 --
 ALTER TABLE `card`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `customer`
+-- AUTO_INCREMENT untuk tabel `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `order`
+-- AUTO_INCREMENT untuk tabel `order`
 --
 ALTER TABLE `order`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT untuk tabel `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `product_type`
+-- AUTO_INCREMENT untuk tabel `product_type`
 --
 ALTER TABLE `product_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `restock`
+-- AUTO_INCREMENT untuk tabel `restock`
 --
 ALTER TABLE `restock`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `supplier`
+-- AUTO_INCREMENT untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT untuk tabel `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `customer`
+-- Ketidakleluasaan untuk tabel `customer`
 --
 ALTER TABLE `customer`
   ADD CONSTRAINT `fk_customer_card1` FOREIGN KEY (`card_id`) REFERENCES `card` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `order`
+-- Ketidakleluasaan untuk tabel `order`
 --
 ALTER TABLE `order`
   ADD CONSTRAINT `fk_order_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_order_product1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `product`
+-- Ketidakleluasaan untuk tabel `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `fk_product_product_type1` FOREIGN KEY (`product_type_id`) REFERENCES `product_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_product_restock1` FOREIGN KEY (`restock_id`) REFERENCES `restock` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `restock`
+-- Ketidakleluasaan untuk tabel `restock`
 --
 ALTER TABLE `restock`
   ADD CONSTRAINT `fk_restock_supplier1` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;

@@ -48,7 +48,7 @@
                     <a href="./index.html"><img src="img/logo.png" alt=""></a>
                 </div>
                 <div class="user-access">
-                    <a href="./login/index.php" class="btn btn-primary">Login</a>
+                    <a href="./login//login.php" class="btn btn-primary">Login</a>
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
